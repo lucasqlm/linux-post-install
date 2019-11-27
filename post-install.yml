@@ -1,0 +1,208 @@
+# https://fedoramagazine.org/using-ansible-setup-workstation/
+# ansible-playbook -K post-install.yml
+
+- hosts: localhost
+  vars:
+    - fedora_version: 30
+  tasks:
+
+# Packages
+    - name: Install Builder
+      become: yes
+      package:
+        name: gnome-builder
+        state: present
+    - name: Install Ansible DConf Module Dependency
+      become: yes
+      package:
+        name: python3-psutil
+        state: present
+    - name: Install RPM Fusion Repository
+      become: yes
+      dnf:
+        name: 
+          - "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm"
+          - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
+        state: present
+    - name: Install Tilix
+      become: yes
+      package:
+        name: tilix
+        state: present
+    - name: Install VLC
+      become: yes
+      package:
+        name: vlc
+        state: present
+    - name: Install GNOME Tweaks
+      become: yes
+      package:
+        name: gnome-tweaks
+        state: present
+    - name: Install Media Codecs
+      become: yes
+      package:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - gstreamer1-libav 
+        - gstreamer1-plugins-bad-free-extras 
+        - gstreamer1-plugins-bad-freeworld 
+        - gstreamer1-plugins-base-tools 
+        - gstreamer1-plugins-good-extras 
+        - gstreamer1-plugins-ugly 
+        - gstreamer1-plugins-bad-free 
+        - gstreamer1-plugins-good 
+        - gstreamer1-plugins-base 
+        - gstreamer1
+        - ffmpeg
+        - compat-ffmpeg28 
+        - ffmpeg-libs
+        - libmatroska
+        - chromium-libs-media-freeworld
+    - name: Install x86 Compilers (Required for STM32 Programming)
+      become: yes
+      package:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - glibc-devel 
+        - glibc-devel.i686
+    - name: Install Hacking Tools
+      become: yes
+      package:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - htop 
+        - nmap
+        - aircrack-ng
+
+
+# DConf Settings
+    - name: Enable Dark Theme
+      dconf:
+        key: /org/gnome/desktop/interface/gtk-theme
+        value: "'Adwaita-dark'"
+    - name: Enable Caps Lock as Ctrl
+      dconf:
+        key: /org/gnome/desktop/input-sources/xkb-options
+        value: "['ctrl:nocaps']"
+    - name: Set Keyboard layout to US Alt. Inter
+      dconf:
+        key: /org/gnome/desktop/input-sources/sources
+        value: "[('xkb', 'us+alt-intl')]"
+    - name: Set Locale Region
+      dconf:
+        key: /system/locale/region
+        value: "'en_GB.UTF-8'"
+    - name: Show Date on Clock
+      dconf:
+        key: /org/gnome/desktop/interface/clock-show-date
+        value: "true"
+    - name: Show Battery Percentage
+      dconf:
+        key: /org/gnome/desktop/interface/show-battery-percentage
+        value: "true"
+    - name: Show Weekdate
+      dconf:
+        key: /org/gnome/desktop/calendar/show-weekdate
+        value: "true"
+    - name: Change WM Button Layout
+      dconf:
+        key: /org/gnome/desktop/wm/preferences/button-layout
+        value: "'appmenu:minimize,maximize,close'"
+    - name: Enable Night Light
+      dconf:
+        key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+        value: "true"
+    - name: Set Night Light Temperature
+      dconf:
+        key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
+        value: "uint32 5500"
+
+# Flatpak And GUI Softwares
+    - name: Add the flathub flatpak repository remote to the user installation
+      flatpak_remote:
+        name: flathub
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        state: present
+    - name: Install Transmission
+      flatpak:
+        name: com.transmissionbt.Transmission
+        remote: flathub
+        state: present
+    - name: Install Spotify
+      flatpak:
+        name: com.spotify.Client
+        remote: flathub
+        state: present
+    - name: Install Blender
+      flatpak:
+        name: org.blender.Blender
+        remote: flathub
+        state: present
+
+# Install Docker
+    - name: Install Docker
+      become: yes
+      package:
+        name: docker
+        state: present
+    - name: Ensure group docker exists
+      become: yes
+      group:
+        name: docker
+        state: present
+    - name: Add user '{{ ansible_user_id }}' to group docker
+      become: yes
+      user:
+        name: '{{ ansible_user_id }}'
+        groups: docker
+        append: yes
+
+# Install ZSH
+    - name: Install ZSH
+      become: yes
+      package:
+        name: zsh
+        state: present
+    - name: Download Oh-My-Zsh
+      get_url:
+        url: https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+        dest: ~/
+        mode: 0740
+    - name: Install Oh-My-Zsh
+      command: sh -c "~/install.sh"
+      register: omzsh_install
+      changed_when: omzsh_install.rc == 0
+      failed_when: 
+        - omzsh_install.rc != 0
+        - omzsh_install.rc != 1
+    - name: Change Zsh Theme
+      lineinfile: 
+        dest: ~/.zshrc 
+        regexp: "^ZSH_THEME=(.*)" 
+        line: 'ZSH_THEME="gianu"' 
+        state: present 
+        backup: yes 
+        backrefs: yes
+    - name: Add Open Alias to Zsh config
+      lineinfile: 
+        dest: ~/.zshrc 
+        line: 'alias open="xdg-open"' 
+        state: present 
+        backup: yes 
+    - name: Set PATH on Zsh config
+      lineinfile: 
+        dest: ~/.zshrc 
+        regexp: "export PATH=(.*)" 
+        line: 'export PATH=$HOME/.local/bin:$PATH' 
+        state: present 
+        backup: yes 
+        backrefs: yes
+    - name: Change user's shell
+      become: yes
+      command: usermod --shell /usr/bin/zsh {{ ansible_user_id }}
+      register: userm
+      changed_when: '"no changes" in userm.stdout'
