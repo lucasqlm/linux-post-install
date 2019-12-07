@@ -80,6 +80,10 @@
 
 
 # DConf Settings
+# You can use `dconf watch /` to know what key has been changed
+# gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+# gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+# gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+alt-intl')]"
     - name: Enable Dark Theme
       dconf:
         key: /org/gnome/desktop/interface/gtk-theme
@@ -122,6 +126,8 @@
         value: "uint32 5500"
 
 # Flatpak And GUI Softwares
+# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# flatpak update
     - name: Add the flathub flatpak repository remote to the user installation
       flatpak_remote:
         name: flathub
@@ -144,6 +150,9 @@
         state: present
 
 # Install Docker
+# sudo dnf install docker
+# sudo groupadd docker
+# sudo gpasswd -a $USER docker
     - name: Install Docker
       become: yes
       package:
@@ -162,6 +171,11 @@
         append: yes
 
 # Install ZSH
+# dnf install -y zsh
+# sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# sudo usermod -s /usr/bin/zsh yourlogin
+# add to path (zshrc)
+# $HOME/.local/bin
     - name: Install ZSH
       become: yes
       package:
@@ -206,3 +220,11 @@
       command: usermod --shell /usr/bin/zsh {{ ansible_user_id }}
       register: userm
       changed_when: '"no changes" in userm.stdout'
+
+
+# Setup MAC Randomization 
+    - name: Configure MAC randomization
+      copy:
+        src: ./files/10-mac-randomization.conf
+        dest: /etc/NetworkManager/conf.d/10-mac-randomization.conf
+        backup: yes
