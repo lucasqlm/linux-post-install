@@ -3,7 +3,7 @@
 
 - hosts: localhost
   vars:
-    - fedora_version: 30
+    - fedora_version: 31
   tasks:
 
 # Packages
@@ -224,7 +224,8 @@
 
 # Setup MAC Randomization 
     - name: Configure MAC randomization
+      become: yes
       copy:
         src: ./files/10-mac-randomization.conf
-        dest: /etc/NetworkManager/conf.d/10-mac-randomization.conf
+        dest: /etc/NetworkManager/conf.d/11-mac-randomization.conf
         backup: yes
