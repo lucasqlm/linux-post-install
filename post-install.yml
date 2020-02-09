@@ -68,6 +68,14 @@
         packages:
         - glibc-devel 
         - glibc-devel.i686
+    - name: Install SeaHorse to encrypt and decrypt files easily
+      become: yes
+      package:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - seahorse
+        - seahorse-nautilus
     - name: Install Hacking Tools
       become: yes
       package:
