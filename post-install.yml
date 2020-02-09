@@ -207,6 +207,12 @@
         line: 'alias open="xdg-open"' 
         state: present 
         backup: yes 
+    - name: Add dnf cache Alias to Zsh config
+      lineinfile: 
+        dest: ~/.zshrc 
+        line: 'alias dnf="dnf --cacheonly --color=auto"' 
+        state: present 
+        backup: yes 
     - name: Set PATH on Zsh config
       lineinfile: 
         dest: ~/.zshrc 
