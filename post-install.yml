@@ -157,27 +157,6 @@
         remote: flathub
         state: present
 
-# Install Docker
-# sudo dnf install docker
-# sudo groupadd docker
-# sudo gpasswd -a $USER docker
-    - name: Install Docker
-      become: yes
-      package:
-        name: docker
-        state: present
-    - name: Ensure group docker exists
-      become: yes
-      group:
-        name: docker
-        state: present
-    - name: Add user '{{ ansible_user_id }}' to group docker
-      become: yes
-      user:
-        name: '{{ ansible_user_id }}'
-        groups: docker
-        append: yes
-
 # Install ZSH
 # dnf install -y zsh
 # sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
