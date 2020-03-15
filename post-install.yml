@@ -76,12 +76,13 @@
         packages:
         - seahorse
         - seahorse-nautilus
-    - name: Install Hacking Tools
+    - name: Install Other Tools
       become: yes
       package:
         name: "{{ packages }}"
       vars:
         packages:
+        - vim
         - htop 
         - nmap
         - aircrack-ng
@@ -132,6 +133,55 @@
       dconf:
         key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
         value: "uint32 5500"
+    # Removable Media Handler - Always ask what to do
+    - name: Removable Media Handler - Don't run software
+      dconf:
+        key: /org/gnome/desktop/media-handling/autorun-x-content-start-app
+        value: "['']"
+    - name: Removable Media Handler - Don't open folder 
+      dconf:
+        key: /org/gnome/desktop/media-handling/autorun-x-content-open-folder
+        value: "['']"
+    - name: Removable Media Handler - Don't ignore
+      dconf:
+        key: /org/gnome/desktop/media-handling/autorun-x-content-ignore
+        value: "['']"
+    # Empty trash and temp files periodcally
+    - name: Empty trash - On
+      dconf:
+        key: /org/gnome/desktop/privacy/remove-old-trash-files
+        value: "true"
+    - name: Clean temp files - On
+      dconf:
+        key: /org/gnome/desktop/privacy/remove-old-temp-files
+        value: "true"
+    - name: Set trash and temp files age (days)
+      dconf:
+        key: /org/gnome/desktop/privacy/old-files-age
+        value: "uint32 30"
+    # Privacy settings
+    - name: Disable location services
+      dconf:
+        key: /org/gnome/system/location/enabled
+        value: "false"
+    # Screen Lock
+    - name: Enable screen lock
+      dconf:
+        key: /org/gnome/desktop/screensaver/lock-enabled
+        value: "true"
+    - name: Screen lock delay after blank screen (seconds)
+      dconf:
+        key: /org/gnome/desktop/screensaver/lock-delay
+        value: "uint32 0"
+    - name: Screen blank screen delay (seconds)
+      dconf:
+        key: /org/gnome/desktop/session/idle-delay
+        value: "uint32 120"
+    - name: Remove from search
+      dconf:
+        key: /org/gnome/desktop/search-providers/disabled
+        value: "['org.gnome.Contacts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Characters.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop']"
+
 
 # Flatpak And GUI Softwares
 # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
