@@ -86,6 +86,7 @@
         - htop 
         - nmap
         - aircrack-ng
+        - gnome-shell-extension-dash-to-dock
 
 
 # DConf Settings
@@ -181,6 +182,55 @@
       dconf:
         key: /org/gnome/desktop/search-providers/disabled
         value: "['org.gnome.Contacts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Characters.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop']"
+    # Dash to Dock
+    - name: Dash to Dock - Shrink dock
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/custom-theme-shrink
+        value: "true"
+    - name: Dash to Dock - Don't show Application button
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/show-show-apps-button
+        value: "false"
+    - name: Dash to Dock - Not fix dock on desktop
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/dock-fixed
+        value: "false"
+    - name: Dash to Dock - Set Panel Mode
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/extend-height
+        value: "true"
+    - name: Dash to Dock - Disable Autohide
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/autohide
+        value: "false"
+    - name: Dash to Dock - Disable Intellihide
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/intellihide
+        value: "false"
+    - name: Dash to Dock - Running Indicator
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/running-indicator-style
+        value: "'DASHES'"
+    - name: Dash to Dock - Set Fixed Opacity
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/transparency-mode
+        value: "'FIXED'"
+    - name: Dash to Dock - Background Opacity
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/background-opacity
+        value: "1.0"
+    - name: Dash to Dock - Use Custom Background Color
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/custom-background-color
+        value: "true"
+    - name: Dash to Dock - Background Color
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/background-color
+        value: "'#000000'"
+    - name: Dash to Dock - Icon Size
+      dconf:
+        key: /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size
+        value: "32"
 
 
 # Flatpak And GUI Softwares
