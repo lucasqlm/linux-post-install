@@ -1,0 +1,83 @@
+# https://blog.simos.info/how-to-run-graphics-accelerated-gui-apps-in-lxd-containers-on-your-ubuntu-desktop/
+# https://gist.github.com/Roadmaster/0de007826485d0e5a9c856171a9a1e9c
+# ansible-playbook -K containers.yml
+
+- hosts: localhost
+  vars:
+    - fedora_version: 32
+  tasks:
+    - name: Install Snap Store
+      become: yes
+      package:
+        name: snapd
+        state: present
+    - name: Install LXD
+      become: yes
+      snap:
+        name: lxd
+        state: present
+    - name: Create lxd X Profile
+      command: lxc profile create x
+      register: profile_out
+      changed_when: profile_out.rc == 0
+      failed_when: 
+        - profile_out.rc != 0
+        - profile_out.rc != 1
+
+    - name: Edit lxd X Profile
+      command: /bin/sh -c "cat files/x.profile | lxc profile edit x"
+
+    - name: Create a started container
+      lxd_container:
+        name: mycontainer
+        state: started
+        source:
+          type: image
+          mode: pull
+          server: https://cloud-images.ubuntu.com/releases
+          protocol: simplestreams # if you get a 404, try setting protocol: simplestreams
+          alias: 20.04/amd64
+        profiles: ["default", "x"]
+
+    - name: Add container to inventory
+      add_host:
+        name: mycontainer
+        ansible_connection: lxd
+      changed_when: false
+
+    - name: Run the equivalent of "apt-get update" as a separate step
+      delegate_to: mycontainer
+      apt:
+        update_cache: yes
+
+    - name: Install X packages
+      delegate_to: mycontainer
+      become: yes
+      package:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - x11-apps
+        - mesa-utils 
+        - alsa-utils
+        - pulseaudio
+    
+    - name: Add DISPLAY to environment
+      delegate_to: mycontainer
+      become: yes
+      become_user: ubuntu
+      lineinfile: 
+        dest: ~/.profile 
+        line: 'export DISPLAY=:1' 
+        state: present 
+        backup: yes
+    - name: Add Pulse Server to environment
+      delegate_to: mycontainer
+      become: yes
+      become_user: ubuntu
+      lineinfile: 
+        dest: ~/.profile 
+        line: 'export PULSE_SERVER=unix:/tmp/.pulse-native' 
+        state: present 
+        backup: yes

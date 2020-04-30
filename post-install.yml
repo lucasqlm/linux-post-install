@@ -3,15 +3,10 @@
 
 - hosts: localhost
   vars:
-    - fedora_version: 31
+    - fedora_version: 32
   tasks:
 
 # Packages
-    - name: Install Builder
-      become: yes
-      package:
-        name: gnome-builder
-        state: present
     - name: Install Ansible DConf Module Dependency
       become: yes
       package:
@@ -28,11 +23,6 @@
       become: yes
       package:
         name: tilix
-        state: present
-    - name: Install VLC
-      become: yes
-      package:
-        name: vlc
         state: present
     - name: Install GNOME Tweaks
       become: yes
@@ -254,6 +244,36 @@
     - name: Install Blender
       flatpak:
         name: org.blender.Blender
+        remote: flathub
+        state: present
+    - name: Install Slack
+      flatpak:
+        name: com.slack.Slack
+        remote: flathub
+        state: present
+    - name: Install GIMP
+      flatpak:
+        name: org.gimp.GIMP
+        remote: flathub
+        state: present
+    - name: Install Adwaita-dark Theme
+      flatpak:
+        name: org.gtk.Gtk3theme.Adwaita-dark
+        remote: flathub
+        state: present
+    - name: Install VLC
+      flatpak:
+        name: org.videolan.VLC
+        remote: flathub
+        state: present
+    - name: VSCode
+      flatpak:
+        name: com.visualstudio.code
+        remote: flathub
+        state: present
+    - name: X Mind Zen
+      flatpak:
+        name: net.xmind.ZEN
         remote: flathub
         state: present
 
