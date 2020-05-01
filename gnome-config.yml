@@ -19,6 +19,10 @@
       dconf:
         key: /org/gnome/desktop/input-sources/xkb-options
         value: "['ctrl:nocaps']"
+    - name: Enable Full Screen Shortcut Ctrl+Shift+f
+      dconf:
+        key: /org/gnome/desktop/wm/keybindings/toggle-fullscreen
+        value: "['<Primary><Shift>f']"
     - name: Set Keyboard layout to US Alt. Inter
       dconf:
         key: /org/gnome/desktop/input-sources/sources
