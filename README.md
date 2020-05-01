@@ -45,3 +45,24 @@ pip3 install awscli --upgrade --user
 
 ### References
 https://fedoramagazine.org/using-ansible-setup-workstation/
+
+MOZ_GTK_TITLEBAR_DECORATION=system firefox
+gnome-themes-extra
+ apt install packagekit-gtk3-module
+
+libcanberra-gtk3-module
+
+- name: Install x86 Compilers (Required for STM32 Programming)
+      become: yes
+      package:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - glibc-devel
+        - glibc-devel.i686
+
+
+        - nmap
+        - aircrack-ng
+
+
