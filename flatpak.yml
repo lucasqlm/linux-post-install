@@ -19,6 +19,11 @@
         name: org.gtk.Gtk3theme.Adwaita-dark
         remote: flathub
         state: present
+    - name: Install Tilix Terminal
+      flatpak:
+        name: com.gexperts.Tilix
+        remote: flathub
+        state: present
     - name: Install Transmission
       flatpak:
         name: com.transmissionbt.Transmission

@@ -56,7 +56,6 @@
         packages:
         - vim
         - htop
-        - tilix
         - gnome-tweaks
         - gnome-shell-extension-dash-to-dock
 
