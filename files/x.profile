@@ -8,13 +8,9 @@ devices:
     path: /tmp/.pulse-native
     source: /run/user/1000/pulse/native
     type: disk
-  X0:
-    path: /tmp/.X11-unix/X0
-    source: /tmp/.X11-unix/X0
-    type: disk
-  X1:
-    path: /tmp/.X11-unix/X1
-    source: /tmp/.X11-unix/X1
+  X:
+    path: /tmp/.X11-unix/
+    source: /tmp/.X11-unix/
     type: disk
   mygpu:
     gid: "1000"
