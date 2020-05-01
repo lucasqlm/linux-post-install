@@ -152,3 +152,11 @@
       dconf:
         key: /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size
         value: "32"
+    - name: Set Enabled Extensions
+      dconf:
+        key: /org/gnome/shell/enabled-extensions
+        value: "['background-logo@fedorahosted.org', 'dash-to-dock@micxgx.gmail.com']"
+    - name: Tilix - Remove header from terminals
+      dconf:
+        key: /com/gexperts/Tilix/terminal-title-style
+        value: "'none'"
