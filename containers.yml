@@ -16,7 +16,22 @@
       snap:
         name: lxd
         state: present
+
+    - name: Sudoers
+      become: yes
+      lineinfile:
+        path: /etc/sudoers
+        regexp: '^(Defaults.*secure_path.*:/bin)$'
+        line: '\1:/var/lib/snapd/snap/bin'
+        backrefs: yes
+        validate: /usr/sbin/visudo -cf %s
+
+    - name: Init lxd
+      become: yes
+      command: /bin/sh -c "lxd init --auto"
+    
     - name: Create lxd X Profile
+      become: yes
       command: lxc profile create x
       register: profile_out
       changed_when: profile_out.rc == 0
@@ -25,9 +40,11 @@
         - profile_out.rc != 1
 
     - name: Edit lxd X Profile
+      become: yes
       command: /bin/sh -c "cat files/x.profile | lxc profile edit x"
 
     - name: Create a started container
+      become: yes
       lxd_container:
         name: mycontainer
         state: started
@@ -45,8 +62,9 @@
         ansible_connection: lxd
       changed_when: false
 
-    - name: Run the equivalent of "apt-get update" as a separate step
+    - name: Apt Update
       delegate_to: mycontainer
+      become: yes
       apt:
         update_cache: yes
 
@@ -81,3 +99,4 @@
         line: 'export PULSE_SERVER=unix:/tmp/.pulse-native' 
         state: present 
         backup: yes
+
