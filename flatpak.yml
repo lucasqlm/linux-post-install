@@ -23,7 +23,7 @@
     - name: Install Tilix Terminal
       flatpak:
         name: com.gexperts.Tilix
-        remote: flathub
+        remote: fedora
         state: present
     - name: Install Transmission
       flatpak:
