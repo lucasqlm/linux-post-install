@@ -1,13 +1,14 @@
 #!/bin/bash
 
-apt-add-repository non-free
-apt-add-repository contrib
-apt update
+sudo pt-add-repository non-free
+sudo apt-add-repository contrib
+sudo apt update
 
-apt install ansible
+sudo apt install ansible
 
-ansible-playbook -K base-install.yml
-ansible-playbook -K debian-codecs.yml
-ansible-playbook -K zsh.yml
-ansible-playbook -K gnome-config.yml
-ansible-playbook -K flatpak.yml
+ansible-playbook -K main.yml
+#ansible-playbook -K base-install.yml
+#ansible-playbook -K debian.yml
+#ansible-playbook -K zsh.yml
+#ansible-playbook -K gnome-config.yml
+#ansible-playbook -K flatpak.yml

@@ -21,8 +21,8 @@
       become: yes
       lineinfile:
         path: /etc/sudoers
-        regexp: '^(Defaults.*secure_path.*:/bin)$'
-        line: '\1:/var/lib/snapd/snap/bin'
+        regexp: '^(Defaults.*secure_path.*:/bin)("{0,1})$'
+        line: '\1:/snap/bin:/var/lib/snapd/snap/bin\2'
         backrefs: yes
         validate: /usr/sbin/visudo -cf %s
 

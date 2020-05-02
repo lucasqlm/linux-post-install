@@ -1,0 +1,21 @@
+- hosts: localhost
+  tasks:
+
+- name: Base Playbook
+  import_playbook: base-install.yml
+
+- name: Import Distribution Playbook
+  import_playbook: fedora.yml
+  when: ansible_facts['distribution'] == "Fedora" 
+  
+- import_playbook: debian.yml
+  when: ansible_facts['distribution'] == "Debian" 
+
+- name: Zsh Playbook
+  import_playbook: zsh.yml
+
+- name: Gnome Config Playbook
+  import_playbook: gnome-config.yml
+  
+- name: Flatpak Playbook
+  import_playbook: flatpak.yml
