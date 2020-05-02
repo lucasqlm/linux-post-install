@@ -1,4 +1,6 @@
 - hosts: localhost
+  vars:
+    - fedora_version: 32
   tasks:
 
     - name: Install RPM Fusion Repository
