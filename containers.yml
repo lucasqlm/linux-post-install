@@ -3,8 +3,6 @@
 # ansible-playbook -K containers.yml
 
 - hosts: localhost
-  vars:
-    - fedora_version: 32
   tasks:
     - name: Install Snap Store
       become: yes

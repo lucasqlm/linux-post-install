@@ -38,6 +38,13 @@
         line: 'alias open="xdg-open"' 
         state: present 
         backup: yes 
+    - name: Add dnf cache Alias to Zsh config
+      lineinfile: 
+        dest: ~/.zshrc 
+        line: 'alias dnf="dnf --cacheonly --color=auto"' 
+        state: present 
+        backup: yes
+      when: ansible_facts['distribution'] == "Fedora"
     - name: Set PATH on Zsh config
       lineinfile: 
         dest: ~/.zshrc 
@@ -51,3 +58,8 @@
       command: usermod --shell /usr/bin/zsh {{ ansible_user_id }}
       register: userm
       changed_when: '"no changes" in userm.stdout'
+    - name: Clean install
+      file:
+        path: ~/install.sh
+        state: absent
+

@@ -1,26 +1,39 @@
 - hosts: localhost
   tasks:
 
+    - name: Install RPM Fusion Repository
+      become: yes
+      dnf:
+        name: 
+          - "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm"
+          - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
+        state: present
     - name: Install Media Codecs
       become: yes
       package:
         name: "{{ packages }}"
       vars:
         packages:
-        - libavcodec-extra
-        - gstreamer1.0-libav
-        - gstreamer1.0-plugins-base
-        - gstreamer1.0-plugins-good
-        - gstreamer1.0-plugins-bad
-        - gstreamer1.0-plugins-ugly
-        - gstreamer1.0-tools
+        - gstreamer1-libav 
+        - gstreamer1-plugins-bad-free-extras 
+        - gstreamer1-plugins-bad-freeworld 
+        - gstreamer1-plugins-base-tools 
+        - gstreamer1-plugins-good-extras 
+        - gstreamer1-plugins-ugly 
+        - gstreamer1-plugins-bad-free 
+        - gstreamer1-plugins-good 
+        - gstreamer1-plugins-base 
+        - gstreamer1
         - ffmpeg
-        - libmatroska6v5
+        - compat-ffmpeg28 
+        - ffmpeg-libs
+        - libmatroska
+        - chromium-libs-media-freeworld
     - name: Install Other Tools
       become: yes
       package:
         name: "{{ packages }}"
       vars:
         packages:
-        - gnome-software-plugin-flatpak
-        - gnome-shell-extension-dashtodock
+        - gnome-shell-extension-dash-to-dock
+
