@@ -1,9 +1,4 @@
-# https://fedoramagazine.org/using-ansible-setup-workstation/
-# ansible-playbook -K post-install.yml
-
 - hosts: localhost
-  vars:
-    - fedora_version: 32
   tasks:
 
 # Flatpak And GUI Softwares
@@ -19,11 +14,6 @@
       flatpak:
         name: org.gtk.Gtk3theme.Adwaita-dark
         remote: flathub
-        state: present
-    - name: Install Tilix Terminal
-      flatpak:
-        name: com.gexperts.Tilix
-        remote: fedora
         state: present
     - name: Install Transmission
       flatpak:

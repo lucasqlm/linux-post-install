@@ -1,0 +1,22 @@
+# https://fedoramagazine.org/using-ansible-setup-workstation/
+# ansible-playbook -K post-install.yml
+
+- hosts: localhost
+  tasks:
+
+# Packages
+    - name: Install Base Common Tools
+      become: yes
+      package:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - vim
+        - htop
+        - gnome-tweaks
+        - flatpak
+        - tilix
+        - python3-psutil # Ansible DConf Dependency
+        - seahorse # Install SeaHorse to encrypt and decrypt files easily
+        - seahorse-nautilus

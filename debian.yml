@@ -1,0 +1,26 @@
+- hosts: localhost
+  tasks:
+
+    - name: Install Media Codecs
+      become: yes
+      package:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - libavcodec-extra
+        - gstreamer1.0-libav
+        - gstreamer1.0-plugins-base
+        - gstreamer1.0-plugins-good
+        - gstreamer1.0-plugins-bad
+        - gstreamer1.0-plugins-ugly
+        - gstreamer1.0-tools
+        - ffmpeg
+        - libmatroska6v5
+    - name: Install Other Tools
+      become: yes
+      package:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - gnome-software-plugin-flatpak
+        - gnome-shell-extension-dashtodock

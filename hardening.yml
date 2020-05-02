@@ -1,9 +1,4 @@
-# https://fedoramagazine.org/using-ansible-setup-workstation/
-# ansible-playbook -K post-install.yml
-
 - hosts: localhost
-  vars:
-    - fedora_version: 32
   tasks:
 
 # Setup MAC Randomization 
