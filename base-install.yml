@@ -14,6 +14,7 @@
         packages:
         - vim
         - htop
+        - stow
         - gnome-tweaks
         - flatpak
         - tilix

@@ -18,41 +18,12 @@
         dest: ~/
         mode: 0740
     - name: Install Oh-My-Zsh
-      command: sh -c "~/install.sh"
+      command: sh -c "ZSH='$HOME/.local/share/oh-my-zsh'; ~/install.sh"
       register: omzsh_install
       changed_when: omzsh_install.rc == 0
       failed_when: 
         - omzsh_install.rc != 0
         - omzsh_install.rc != 1
-    - name: Change Zsh Theme
-      lineinfile: 
-        dest: ~/.zshrc 
-        regexp: "^ZSH_THEME=(.*)" 
-        line: 'ZSH_THEME="gianu"' 
-        state: present 
-        backup: yes 
-        backrefs: yes
-    - name: Add Open Alias to Zsh config
-      lineinfile: 
-        dest: ~/.zshrc 
-        line: 'alias open="xdg-open"' 
-        state: present 
-        backup: yes 
-    - name: Add dnf cache Alias to Zsh config
-      lineinfile: 
-        dest: ~/.zshrc 
-        line: 'alias dnf="dnf --cacheonly --color=auto"' 
-        state: present 
-        backup: yes
-      when: ansible_facts['distribution'] == "Fedora"
-    - name: Set PATH on Zsh config
-      lineinfile: 
-        dest: ~/.zshrc 
-        regexp: "export PATH=(.*)" 
-        line: 'export PATH=$HOME/.local/bin:$PATH' 
-        state: present 
-        backup: yes 
-        backrefs: yes
     - name: Change user's shell
       become: yes
       command: usermod --shell /usr/bin/zsh {{ ansible_user_id }}
