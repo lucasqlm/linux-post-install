@@ -18,7 +18,7 @@
         dest: ~/
         mode: 0740
     - name: Install Oh-My-Zsh
-      command: sh -c "ZSH='$HOME/.local/share/oh-my-zsh'; ~/install.sh"
+      command: sh -c "ZSH='$HOME/.local/share/oh-my-zsh' ~/install.sh"
       register: omzsh_install
       changed_when: omzsh_install.rc == 0
       failed_when: 
