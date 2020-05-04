@@ -17,6 +17,7 @@
         - stow
         - gnome-tweaks
         - flatpak
+        - tree
         - tilix
         - python3-psutil # Ansible DConf Dependency
         - seahorse # Install SeaHorse to encrypt and decrypt files easily
