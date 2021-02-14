@@ -16,6 +16,10 @@
   dconf:
     key: /org/gnome/desktop/wm/keybindings/toggle-fullscreen
     value: "['<Primary><Shift>f']"
+- name: Change Close Window Shortcut to Alt+q
+  dconf:
+    key: /org/gnome/desktop/wm/keybindings/close
+    value: "['<Alt>q']"
 - name: Set Keyboard layout to US Alt. Inter
   dconf:
     key: /org/gnome/desktop/input-sources/sources
@@ -149,7 +153,12 @@
   dconf:
     key: /org/gnome/shell/enabled-extensions
     value: "['background-logo@fedorahosted.org', 'dash-to-dock@micxgx.gmail.com']"
+# Tilix configs
 - name: Tilix - Remove header from terminals
   dconf:
     key: /com/gexperts/Tilix/terminal-title-style
     value: "'none'"
+- name: Tilix - Remove VTE issue Warning
+  dconf:
+    key: /com/gexperts/Tilix/warn-vte-config-issue
+    value: "false"
