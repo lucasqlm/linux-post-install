@@ -1,5 +1,8 @@
 # Fedora Automated Post Install Script
 
+## Install
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/lucasqlm/linux-post-install/feat/fedora-33/start.sh)"
+
 ## Run
 Clone this repository and run the playbook as your user
 ```bash
