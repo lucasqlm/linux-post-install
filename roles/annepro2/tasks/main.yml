@@ -1,0 +1,24 @@
+---
+# DConf Settings
+# You can use `dconf watch /` to know what key has been changed
+- name: Enable Default Caps Lock behaviour
+  dconf:
+    key: /org/gnome/desktop/input-sources/xkb-options
+    value: "['']"
+# Change 'Switch windows of an application' keybindings
+- name: Change 'Switch windows of an application' forward Shortcut Alt+Esc
+  dconf:
+    key: /org/gnome/desktop/wm/keybindings/switch-group
+    value: "['<Alt>Escape']"
+- name: Change 'Switch windows of an application' backward Shortcut Alt+Esc
+  dconf:
+    key: /org/gnome/desktop/wm/keybindings/switch-group-backward
+    value: "['<Shift><Alt>Escape']"
+- name: Disable conflicting forward Shortcut
+  dconf:
+    key: /org/gnome/desktop/wm/keybindings/cycle-windows
+    value: "[]"
+- name: Disable conflicting backward Shortcut
+  dconf:
+    key: /org/gnome/desktop/wm/keybindings/cycle-windows-backward
+    value: "[]"
