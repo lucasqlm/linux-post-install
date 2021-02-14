@@ -1,0 +1,14 @@
+- name: Create Projects directory
+  file:
+    path: ~/Projects
+    state: directory
+
+- name: Clone Post Install project
+  git:
+    repo: "git@github.com:lucasqlm/linux-post-install.git"
+    dest: ~/Projects/
+
+- name: Clone Python Webapp project
+  git:
+    repo: "git@github.com:lucasqlm/python-webapp.git"
+    dest: ~/Projects/
