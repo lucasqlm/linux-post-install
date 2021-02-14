@@ -1,0 +1,70 @@
+---
+# Flatpak And GUI Softwares
+# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# flatpak update
+- name: Add the flathub flatpak repository remote to the user installation
+  become: yes
+  flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    state: present
+- name: Install Adwaita-dark Theme
+  become: yes
+  flatpak:
+    name: org.gtk.Gtk3theme.Adwaita-dark
+    remote: flathub
+    state: present
+- name: Install Tilix Terminal
+  become: yes
+  flatpak:
+    name: com.gexperts.Tilix
+    remote: fedora
+    state: present
+- name: Install Transmission
+  become: yes
+  flatpak:
+    name: com.transmissionbt.Transmission
+    remote: flathub
+    state: present
+- name: Install Spotify
+  become: yes
+  flatpak:
+    name: com.spotify.Client
+    remote: flathub
+    state: present
+- name: Install Blender
+  become: yes
+  flatpak:
+    name: org.blender.Blender
+    remote: flathub
+    state: present
+- name: Install Slack
+  become: yes
+  flatpak:
+    name: com.slack.Slack
+    remote: flathub
+    state: present
+- name: Install GIMP
+  become: yes
+  flatpak:
+    name: org.gimp.GIMP
+    remote: flathub
+    state: present
+- name: Install VLC
+  become: yes
+  flatpak:
+    name: org.videolan.VLC
+    remote: flathub
+    state: present
+- name: VSCode
+  become: yes
+  flatpak:
+    name: com.visualstudio.code
+    remote: flathub
+    state: present
+- name: X Mind Zen
+  become: yes
+  flatpak:
+    name: net.xmind.ZEN
+    remote: flathub
+    state: present

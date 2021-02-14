@@ -3,7 +3,7 @@
 ## Run
 Clone this repository and run the playbook as your user
 ```bash
-ansible-playbook -K post-install.yml
+ansible-playbook -K workstation.yml
 ```
 
 ---

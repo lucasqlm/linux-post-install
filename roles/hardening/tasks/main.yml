@@ -1,0 +1,8 @@
+---
+# Setup MAC Randomization 
+- name: Configure MAC randomization
+  become: yes
+  copy:
+    src: ./files/10-mac-randomization.conf
+    dest: /etc/NetworkManager/conf.d/11-mac-randomization.conf
+    backup: yes

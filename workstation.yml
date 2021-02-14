@@ -1,0 +1,9 @@
+---
+- name: Config All
+  hosts: localhost
+
+  roles:
+    - core-packages
+    - ohmyzsh
+    - flatpak
+    - gnome
