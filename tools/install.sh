@@ -6,4 +6,5 @@ curl --location --output post-install.zip https://github.com/lucasqlm/linux-post
 
 pip install ansible
 
-./linux-post-install/linux-post-install-feat-fedora-33/start.sh
+cd linux-post-install/linux-post-install-feat-fedora-33
+./start.sh

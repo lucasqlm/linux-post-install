@@ -1,18 +1,9 @@
 ---
-# https://fedoramagazine.org/using-ansible-setup-workstation/
-# ansible-playbook -K post-install.yml
 - name: Install Ansible DConf Module Dependency
   become: yes
   package:
     name: python3-psutil
     state: present
-# - name: Install RPM Fusion Repository
-#   become: yes
-#   dnf:
-#     name: 
-#       - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm"
-#       - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
-#     state: present
 - name: Install RPM Fusion Repository
   become: yes
   command: /usr/bin/dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm" "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
