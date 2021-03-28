@@ -1,3 +1,2 @@
 ---
-- include: incognia-repos.yml
 - include: personal-repos.yml
