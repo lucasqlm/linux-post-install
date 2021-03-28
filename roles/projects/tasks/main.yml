@@ -3,12 +3,10 @@
     path: ~/Projects
     state: directory
 
-- name: Clone Post Install project
+- name: Clone Public Personal Repositories
   git:
-    repo: "git@github.com:lucasqlm/linux-post-install.git"
-    dest: ~/Projects/
-
-- name: Clone Python Webapp project
-  git:
-    repo: "git@github.com:lucasqlm/python-webapp.git"
-    dest: ~/Projects/
+    dest: "~/Projects/lucasqlm/{{ item }}"
+    repo: "https://github.com/lucasqlm/{{ item }}.git"
+  loop:
+    - python-webapp
+    - linux-post-install

@@ -1,0 +1,14 @@
+
+- name: Clone Personal Repositories
+  git:
+    accept_hostkey: yes
+    key_file: ~/.ssh/lucasqlm/id_rsa
+    dest: "./lucasqlm/{{ item }}"
+    repo: "git@github.com:lucasqlm/{{ item }}.git"
+  loop:
+    - private-post-install
+
+- name: Apply private repo tasks
+  include_tasks: ./lucasqlm/private-post-install/tasks/main.yml
+
+
