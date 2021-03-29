@@ -69,3 +69,8 @@ libcanberra-gtk3-module
         - aircrack-ng
 
 
+---
+
+Create mime type (xmind) 
+
+[https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/file_formats](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/desktop_migration_and_administration_guide/file_formats)

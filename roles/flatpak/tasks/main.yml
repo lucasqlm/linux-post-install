@@ -56,12 +56,6 @@
     name: org.videolan.VLC
     remote: flathub
     state: present
-- name: VSCode
-  become: yes
-  flatpak:
-    name: com.visualstudio.code
-    remote: flathub
-    state: present
 - name: X Mind Zen
   become: yes
   flatpak:
