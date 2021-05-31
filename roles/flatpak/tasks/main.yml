@@ -32,6 +32,12 @@
     name: com.slack.Slack
     remote: flathub
     state: present
+- name: Install Gnome Extensions
+  become: yes
+  flatpak:
+    name: org.gnome.Extensions
+    remote: flathub
+    state: present
 - name: Install KeePassXC
   become: yes
   flatpak:
