@@ -20,22 +20,10 @@
     name: com.gexperts.Tilix
     remote: fedora
     state: present
-- name: Install Transmission
-  become: yes
-  flatpak:
-    name: com.transmissionbt.Transmission
-    remote: flathub
-    state: present
 - name: Install Spotify
   become: yes
   flatpak:
     name: com.spotify.Client
-    remote: flathub
-    state: present
-- name: Install Blender
-  become: yes
-  flatpak:
-    name: org.blender.Blender
     remote: flathub
     state: present
 - name: Install Slack
@@ -44,21 +32,9 @@
     name: com.slack.Slack
     remote: flathub
     state: present
-- name: Install GIMP
+- name: Install KeePassXC
   become: yes
   flatpak:
-    name: org.gimp.GIMP
-    remote: flathub
-    state: present
-- name: Install VLC
-  become: yes
-  flatpak:
-    name: org.videolan.VLC
-    remote: flathub
-    state: present
-- name: X Mind Zen
-  become: yes
-  flatpak:
-    name: net.xmind.ZEN
+    name: org.keepassxc.KeePassXC
     remote: flathub
     state: present
