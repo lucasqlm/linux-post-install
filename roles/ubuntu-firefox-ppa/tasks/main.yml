@@ -1,10 +1,12 @@
 ---
 - name: Remove Firefox snap package
+  become: yes
   community.general.snap:
     name: firefox
     state: absent
 
 - name: Add Firefox stable repository from PPA and install its signing key on Ubuntu target
+  become: yes
   ansible.builtin.apt_repository:
     repo: ppa:mozillateam/ppa
 
