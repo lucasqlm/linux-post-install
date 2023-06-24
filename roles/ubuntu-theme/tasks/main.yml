@@ -1,0 +1,47 @@
+- name: Enable Dark Theme
+  dconf:
+    key: /org/gnome/desktop/interface/color-scheme
+    value: "'prefer-dark'"
+
+- name: Enable Dark Theme with blue
+  dconf:
+    key: /org/gnome/desktop/interface/gtk-theme
+    value: "'Yaru-blue-dark'"
+
+- name: Enable Dark Theme on gedit
+  dconf:
+    key: /org/gnome/gedit/interface/gtk-theme
+    value: "'Yaru-blue-dark'"
+
+- name: Enable Dark Theme on gedit
+  dconf:
+    key: /org/gnome/gedit/preferences/editor/scheme
+    value: "'Yaru-dark'"
+
+# Dock
+- name: Ubuntu Dock - Hide
+  dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/dock-fixed
+    value: "false"
+
+- name: Ubuntu Dock - Hide
+  dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/intellihide
+    value: "false"
+
+- name: Ubuntu Dock - Bottom
+  dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/dock-position
+    value: "'BOTTOM'"
+
+- name: Ubuntu Dock - small
+  dconf:
+    key: /org/gnome/shell/extensions/dash-to-dock/extend-height
+    value: "false"
+
+
+# Remove extensions
+- name: Remove desktop icons
+  dconf:
+    key: /org/gnome/shell/disabled-extensions
+    value: "['ding@rastersoft.com']"
