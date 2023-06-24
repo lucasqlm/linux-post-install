@@ -8,4 +8,4 @@ sudo apt update && sudo apt install -y python3-pip
 pip install ansible
 
 cd linux-post-install/linux-post-install-feature-general-install
-PATH=$HOME/.local/bin ./start.sh
+PATH=$HOME/.local/bin:$PATH ./start.sh
