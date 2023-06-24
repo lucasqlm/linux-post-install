@@ -1,7 +1,9 @@
 # Fedora Automated Post Install Script
 
 ## Install
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/lucasqlm/linux-post-install/feat/fedora-34/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/lucasqlm/linux-post-install/feature/general-install/tools/install.sh)"
+
+sh -c "$(wget https://raw.githubusercontent.com/lucasqlm/linux-post-install/feature/general-install/tools/install.sh -O -)"
 
 ## Run
 Clone this repository and run the playbook as your user
