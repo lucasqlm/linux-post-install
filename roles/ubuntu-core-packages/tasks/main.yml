@@ -20,6 +20,8 @@
     name: "{{ packages }}"
   vars:
     packages:
+    - git # required for ow-my-zsh & private-repos
+    - flatpak # required for flatpak
     - neovim
     - htop
     - gnome-tweaks
