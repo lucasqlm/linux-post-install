@@ -5,6 +5,5 @@
   roles:
     - ohmyzsh
     - flatpak
-    - gnome
     - hardening
     # - private

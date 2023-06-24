@@ -5,3 +5,5 @@
   roles:
     - ubuntu-core-packages
     - ubuntu-firefox-ppa
+    - gnome
+    - ubuntu-theme

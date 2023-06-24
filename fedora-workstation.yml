@@ -4,3 +4,4 @@
 
   roles:
     - fedora-core-packages
+    - gnome
