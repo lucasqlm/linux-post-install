@@ -44,3 +44,9 @@
     name: org.keepassxc.KeePassXC
     remote: flathub
     state: present
+- name: Install Extension Manager
+  become: yes
+  flatpak:
+    name: com.mattjakeman.ExtensionManager
+    remote: flathub
+    state: present
