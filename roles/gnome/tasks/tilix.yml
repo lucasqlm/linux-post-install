@@ -1,0 +1,10 @@
+# Tilix configs
+- name: Tilix - Remove header from terminals
+  dconf:
+    key: /com/gexperts/Tilix/terminal-title-style
+    value: "'none'"
+
+- name: Tilix - Remove VTE issue Warning
+  dconf:
+    key: /com/gexperts/Tilix/warn-vte-config-issue
+    value: "false"

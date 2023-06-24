@@ -1,20 +1,23 @@
 ---
 # Install ZSH
 # dnf install -y zsh
-# sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # sudo usermod -s /usr/bin/zsh yourlogin
 # add to path (zshrc)
 # $HOME/.local/bin
+
 - name: Install ZSH
   become: yes
   package:
     name: zsh
     state: present
+
 - name: Download Oh-My-Zsh
   get_url:
-    url: https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     dest: ~/
     mode: 0740
+
 - name: Install Oh-My-Zsh
   command: sh -c "~/install.sh"
   register: omzsh_install
@@ -22,6 +25,7 @@
   failed_when: 
     - omzsh_install.rc != 0
     - omzsh_install.rc != 1
+
 - name: Change Zsh Theme
   lineinfile: 
     dest: ~/.zshrc 
@@ -30,18 +34,21 @@
     state: present 
     backup: yes 
     backrefs: yes
+
 - name: Add Open Alias to Zsh config
   lineinfile: 
     dest: ~/.zshrc 
     line: 'alias open="xdg-open"' 
     state: present 
     backup: yes 
-- name: Add dnf cache Alias to Zsh config
-  lineinfile: 
-    dest: ~/.zshrc 
-    line: 'alias dnf="dnf --cacheonly --color=auto"' 
-    state: present 
-    backup: yes 
+
+# - name: Add dnf cache Alias to Zsh config
+#   lineinfile: 
+#     dest: ~/.zshrc 
+#     line: 'alias dnf="dnf --cacheonly --color=auto"' 
+#     state: present 
+#     backup: yes
+
 - name: Set PATH on Zsh config
   lineinfile: 
     dest: ~/.zshrc 
@@ -50,6 +57,7 @@
     state: present 
     backup: yes 
     backrefs: yes
+
 - name: Change user's shell
   become: yes
   command: usermod --shell /usr/bin/zsh {{ ansible_user_id }}

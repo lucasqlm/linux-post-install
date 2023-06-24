@@ -1,0 +1,7 @@
+---
+- name: Config Ubuntu Workstation
+  hosts: dist_Ubuntu-22
+
+  roles:
+    - ubuntu-core-packages
+    - ubuntu-firefox-ppa

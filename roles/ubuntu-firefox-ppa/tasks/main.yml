@@ -1,0 +1,28 @@
+---
+- name: Remove Firefox snap package
+  community.general.snap:
+    name: firefox
+    state: absent
+
+- name: Add Firefox stable repository from PPA and install its signing key on Ubuntu target
+  ansible.builtin.apt_repository:
+    repo: ppa:mozillateam/ppa
+
+- name: Increase Firefox package priority
+  become: yes
+  copy:
+    src: ./files/mozilla-firefox
+    dest: /etc/apt/preferences.d/mozilla-firefox
+    backup: no
+
+- name: Enable future Firefox upgrades to be installed automatically
+  become: yes
+  copy:
+    src: ./files/51unattended-upgrades-firefox
+    dest: /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+    backup: no
+
+- name: Install Firefox
+  become: yes
+  package:
+    name: firefox

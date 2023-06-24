@@ -1,0 +1,5 @@
+---
+- name: Config MacOS Workstation
+  hosts: os_Macos
+
+  roles:

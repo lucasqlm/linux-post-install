@@ -1,2 +1,2 @@
 ---
-- include: personal-repos.yml
+- include_tasks: personal-repos.yml

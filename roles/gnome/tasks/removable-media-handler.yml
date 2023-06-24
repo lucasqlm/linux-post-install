@@ -1,0 +1,15 @@
+# Always ask what to do
+- name: Removable Media Handler - Don't run software
+  dconf:
+    key: /org/gnome/desktop/media-handling/autorun-x-content-start-app
+    value: "['']"
+
+- name: Removable Media Handler - Don't open folder 
+  dconf:
+    key: /org/gnome/desktop/media-handling/autorun-x-content-open-folder
+    value: "['']"
+
+- name: Removable Media Handler - Don't ignore
+  dconf:
+    key: /org/gnome/desktop/media-handling/autorun-x-content-ignore
+    value: "['']"

@@ -4,108 +4,13 @@
 # gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 # gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 # gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+alt-intl')]"
-- name: Enable Dark Theme
-  dconf:
-    key: /org/gnome/desktop/interface/gtk-theme
-    value: "'Adwaita-dark'"
-- name: Enable Caps Lock as Ctrl
-  dconf:
-    key: /org/gnome/desktop/input-sources/xkb-options
-    value: "['ctrl:nocaps']"
-- name: Enable Full Screen Shortcut Ctrl+Shift+f
-  dconf:
-    key: /org/gnome/desktop/wm/keybindings/toggle-fullscreen
-    value: "['<Primary><Shift>f']"
-- name: Change Close Window Shortcut to Alt+q
-  dconf:
-    key: /org/gnome/desktop/wm/keybindings/close
-    value: "['<Alt>q']"
-- name: Set Keyboard layout to US Alt. Inter
-  dconf:
-    key: /org/gnome/desktop/input-sources/sources
-    value: "[('xkb', 'us+alt-intl')]"
-- name: Set Locale Region
-  dconf:
-    key: /system/locale/region
-    value: "'en_GB.UTF-8'"
-- name: Show Date on Clock
-  dconf:
-    key: /org/gnome/desktop/interface/clock-show-date
-    value: "true"
-- name: Show Battery Percentage
-  dconf:
-    key: /org/gnome/desktop/interface/show-battery-percentage
-    value: "true"
-- name: Show Weekdate
-  dconf:
-    key: /org/gnome/desktop/calendar/show-weekdate
-    value: "true"
-- name: Change WM Button Layout
-  dconf:
-    key: /org/gnome/desktop/wm/preferences/button-layout
-    value: "'appmenu:minimize,maximize,close'"
-- name: Enable Night Light
-  dconf:
-    key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
-    value: "true"
-- name: Set Night Light Temperature
-  dconf:
-    key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
-    value: "uint32 5500"
-# Removable Media Handler - Always ask what to do
-- name: Removable Media Handler - Don't run software
-  dconf:
-    key: /org/gnome/desktop/media-handling/autorun-x-content-start-app
-    value: "['']"
-- name: Removable Media Handler - Don't open folder 
-  dconf:
-    key: /org/gnome/desktop/media-handling/autorun-x-content-open-folder
-    value: "['']"
-- name: Removable Media Handler - Don't ignore
-  dconf:
-    key: /org/gnome/desktop/media-handling/autorun-x-content-ignore
-    value: "['']"
-# Empty trash and temp files periodcally
-- name: Empty trash - On
-  dconf:
-    key: /org/gnome/desktop/privacy/remove-old-trash-files
-    value: "true"
-- name: Clean temp files - On
-  dconf:
-    key: /org/gnome/desktop/privacy/remove-old-temp-files
-    value: "true"
-- name: Set trash and temp files age (days)
-  dconf:
-    key: /org/gnome/desktop/privacy/old-files-age
-    value: "uint32 30"
-# Privacy settings
-- name: Disable location services
-  dconf:
-    key: /org/gnome/system/location/enabled
-    value: "false"
-# Screen Lock
-- name: Enable screen lock
-  dconf:
-    key: /org/gnome/desktop/screensaver/lock-enabled
-    value: "true"
-- name: Screen lock delay after blank screen (seconds)
-  dconf:
-    key: /org/gnome/desktop/screensaver/lock-delay
-    value: "uint32 0"
-- name: Screen blank screen delay (seconds)
-  dconf:
-    key: /org/gnome/desktop/session/idle-delay
-    value: "uint32 120"
-- name: Remove from search
-  dconf:
-    key: /org/gnome/desktop/search-providers/disabled
-    value: "['org.gnome.Contacts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Characters.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop']"
-# Tilix configs
-- name: Tilix - Remove header from terminals
-  dconf:
-    key: /com/gexperts/Tilix/terminal-title-style
-    value: "'none'"
-- name: Tilix - Remove VTE issue Warning
-  dconf:
-    key: /com/gexperts/Tilix/warn-vte-config-issue
-    value: "false"
+
+# Gnome Desktop
+- include_tasks: general.yml
+- include_tasks: keybindings.yml
+- include_tasks: removable-media-handler.yml
+- include_tasks: trash-and-temp.yml
+- include_tasks: privacy.yml
+
+# Apps
+- include_tasks: tilix.yml

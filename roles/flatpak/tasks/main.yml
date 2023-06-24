@@ -14,12 +14,12 @@
     name: org.gtk.Gtk3theme.Adwaita-dark
     remote: flathub
     state: present
-- name: Install Tilix Terminal
-  become: yes
-  flatpak:
-    name: com.gexperts.Tilix
-    remote: fedora
-    state: present
+# - name: Install Tilix Terminal
+#   become: yes
+#   flatpak:
+#     name: com.gexperts.Tilix
+#     remote: fedora
+#     state: present
 - name: Install Spotify
   become: yes
   flatpak:

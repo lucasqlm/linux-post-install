@@ -1,0 +1,15 @@
+# Empty trash and temp files periodcally
+- name: Empty trash - On
+  dconf:
+    key: /org/gnome/desktop/privacy/remove-old-trash-files
+    value: "true"
+
+- name: Clean temp files - On
+  dconf:
+    key: /org/gnome/desktop/privacy/remove-old-temp-files
+    value: "true"
+
+- name: Set trash and temp files age (days)
+  dconf:
+    key: /org/gnome/desktop/privacy/old-files-age
+    value: "uint32 30"

@@ -1,0 +1,44 @@
+- name: Enable Dark Theme
+  dconf:
+    key: /org/gnome/desktop/interface/gtk-theme
+    value: "'Adwaita-dark'"
+
+- name: Set Keyboard layout to US Alt. Inter
+  dconf:
+    key: /org/gnome/desktop/input-sources/sources
+    value: "[('xkb', 'us+alt-intl')]"
+
+- name: Set Locale Region
+  dconf:
+    key: /system/locale/region
+    value: "'en_GB.UTF-8'"
+
+- name: Show Date on Clock
+  dconf:
+    key: /org/gnome/desktop/interface/clock-show-date
+    value: "true"
+
+- name: Show Battery Percentage
+  dconf:
+    key: /org/gnome/desktop/interface/show-battery-percentage
+    value: "true"
+
+- name: Show Weekdate
+  dconf:
+    key: /org/gnome/desktop/calendar/show-weekdate
+    value: "true"
+
+- name: Change WM Button Layout
+  dconf:
+    key: /org/gnome/desktop/wm/preferences/button-layout
+    value: "'appmenu:minimize,maximize,close'"
+
+- name: Enable Night Light
+  dconf:
+    key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+    value: "true"
+
+- name: Set Night Light Temperature
+  dconf:
+    key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
+    value: "uint32 5500"

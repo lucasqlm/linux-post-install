@@ -1,0 +1,6 @@
+---
+- name: Config Fedora Workstation
+  hosts: dist_Fedora-34
+
+  roles:
+    - fedora-core-packages

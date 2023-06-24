@@ -1,0 +1,26 @@
+---
+- name: Install Ansible DConf Module Dependency
+  become: yes
+  package:
+    name: python3-psutil
+    state: present
+
+- name: Install SeaHorse to encrypt and decrypt files easily
+  become: yes
+  package:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - seahorse
+    - seahorse-nautilus
+
+- name: Install Other Tools
+  become: yes
+  package:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - neovim
+    - htop
+    - gnome-tweaks
+    - tmux

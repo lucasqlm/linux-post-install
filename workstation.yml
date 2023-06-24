@@ -1,10 +1,26 @@
 ---
-- name: Config All
+- name: Talk to all hosts just so we can learn about them
   hosts: localhost
 
-  roles:
-    - core-packages
-    - ohmyzsh
-    - flatpak
-    - gnome
-    - private
+  tasks:
+    - name: Classify hosts depending on their OS and distribution
+      ansible.builtin.group_by:
+        key: dist_{{ ansible_distribution }}-{{ ansible_distribution_major_version }}
+        parents:
+          - os_{{ ansible_system }}
+
+    - name: Available groups
+      ansible.builtin.debug:
+        var: groups
+      
+    - name: Host facts
+      ansible.builtin.debug:
+        msg: 
+          - "OS: {{ ansible_system }}"
+          - "Distribution: {{ ansible_distribution }}"
+          - "Major version: {{ ansible_distribution_major_version }}"
+
+- import_playbook: ubuntu-workstation.yml
+- import_playbook: fedora-workstation.yml
+- import_playbook: linux-workstation.yml
+- import_playbook: macos-workstation.yml

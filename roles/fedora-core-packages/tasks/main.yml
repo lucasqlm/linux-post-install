@@ -4,9 +4,11 @@
   package:
     name: python3-psutil
     state: present
+
 - name: Install RPM Fusion Repository
   become: yes
-  command: /usr/bin/dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm" "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
+  command: /usr/bin/dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm" "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+
 - name: Install Media Codecs
   become: yes
   package:
@@ -28,6 +30,7 @@
     - ffmpeg-libs
     - libmatroska
     - chromium-libs-media-freeworld
+
 - name: Install SeaHorse to encrypt and decrypt files easily
   become: yes
   package:
@@ -36,6 +39,7 @@
     packages:
     - seahorse
     - seahorse-nautilus
+
 - name: Install Other Tools
   become: yes
   package:
