@@ -9,8 +9,7 @@ Debian | Ubuntu)
       && unzip -qo post-install.zip -d linux-post-install\
       && rm post-install.zip
 
-    sudo apt update && sudo apt install -y python3-pip
-    pip install ansible
+    sudo apt update && sudo apt install -y ansible
 
     cd linux-post-install/linux-post-install-feature-general-install
     PATH=$HOME/.local/bin:$PATH ./start.sh
