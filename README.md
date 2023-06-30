@@ -1,6 +1,6 @@
-# Fedora Automated Post Install Script
+# Automated Post Install Script
 
-## Install
+## Run
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/lucasqlm/linux-post-install/feature/general-install/tools/install.sh)"
 
 sh -c "$(wget https://raw.githubusercontent.com/lucasqlm/linux-post-install/feature/general-install/tools/install.sh -O -)"
