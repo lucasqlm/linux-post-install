@@ -15,13 +15,13 @@
 - name: Download Oh-My-Zsh
   get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    dest: ~/
+    dest: /tmp/
     mode: 0740
 
 - name: Install Oh-My-Zsh
-  command: sh -c "~/install.sh"
+  command: sh -c "/tmp/install.sh"
   environment:
-        ZSH: "$HOME/.local/share/oh-my-zsh"
+        ZSH: "{{ansible_env.HOME}}/.local/share/oh-my-zsh"
   register: omzsh_install
   changed_when: omzsh_install.rc == 0
   failed_when: 
