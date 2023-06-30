@@ -52,14 +52,14 @@
 #     state: present 
 #     backup: yes
 #
-# - name: Set PATH on Zsh config
-#   lineinfile: 
-#     dest: ~/.zshrc 
-#     regexp: "export PATH=(.*)" 
-#     line: 'export PATH=$HOME/.local/bin:$PATH' 
-#     state: present 
-#     backup: yes 
-#     backrefs: yes
+- name: Set PATH on Zsh config
+  lineinfile: 
+    dest: ~/.zshrc 
+    regexp: "export PATH=(.*)" 
+    line: 'export PATH=$HOME/.local/bin:$PATH' 
+    state: present 
+    backup: yes 
+    backrefs: yes
 
 - name: Change user's shell
   become: yes

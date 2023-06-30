@@ -5,3 +5,4 @@
   roles:
     - debian-core-packages
     - gnome
+    - projects
