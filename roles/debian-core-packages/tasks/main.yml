@@ -22,9 +22,7 @@
     packages:
     - git # required for ow-my-zsh & private-repos
     - flatpak # required for flatpak
-    - neovim
     - htop
-    - gnome-tweaks
     - tmux
     - ffmpeg
     - podman

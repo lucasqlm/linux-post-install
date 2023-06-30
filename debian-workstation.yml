@@ -1,0 +1,7 @@
+---
+- name: Config Debian Workstation
+  hosts: dist_Debian-12
+
+  roles:
+    - debian-core-packages
+    - gnome

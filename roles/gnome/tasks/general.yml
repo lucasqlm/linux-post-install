@@ -1,12 +1,12 @@
-- name: Enable Dark Theme
+- name: Enable GTK4 Dark Theme
+  dconf:
+    key: /org/gnome/desktop/interface/color-scheme
+    value: "'prefer-dark'"
+
+- name: Enable Dark Theme for Legacy applications
   dconf:
     key: /org/gnome/desktop/interface/gtk-theme
     value: "'Adwaita-dark'"
-
-- name: Set Keyboard layout to US Alt. Inter
-  dconf:
-    key: /org/gnome/desktop/input-sources/sources
-    value: "[('xkb', 'us+alt-intl')]"
 
 - name: Set Locale Region
   dconf:
@@ -42,3 +42,18 @@
   dconf:
     key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
     value: "uint32 5500"
+
+- name: Remove from search
+  dconf:
+    key: /org/gnome/desktop/search-providers/disabled
+    value: "['org.gnome.Contacts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Characters.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop']"
+
+- name: Add Downloads to search index folders
+  dconf:
+    key: /org/freedesktop/tracker/miner/files/index-recursive-directories
+    value: "['&DESKTOP', '&DOCUMENTS', '&MUSIC', '&PICTURES', '&VIDEOS', '&DOWNLOAD']"
+
+- name: Multitasking - Disable hot corners
+  dconf:
+    key: /org/gnome/desktop/interface/enable-hot-corners
+    value: "false"

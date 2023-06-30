@@ -7,7 +7,7 @@
 
 # Gnome Desktop
 - include_tasks: general.yml
-- include_tasks: keybindings.yml
+- include_tasks: keyboard.yml
 - include_tasks: removable-media-handler.yml
 - include_tasks: trash-and-temp.yml
 - include_tasks: privacy.yml

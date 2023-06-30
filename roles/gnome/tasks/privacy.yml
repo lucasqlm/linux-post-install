@@ -19,8 +19,3 @@
   dconf:
     key: /org/gnome/desktop/session/idle-delay
     value: "uint32 120"
-
-- name: Remove from search
-  dconf:
-    key: /org/gnome/desktop/search-providers/disabled
-    value: "['org.gnome.Contacts.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Characters.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop']"

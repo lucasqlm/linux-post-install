@@ -10,3 +10,11 @@
   loop:
     - python-webapp
     - linux-post-install
+
+- name: Clone Distrobox Repository
+  git:
+    dest: "~/Projects/git/distrobox"
+    repo: https://github.com/89luca89/distrobox.git
+
+- name: Install Distrobox
+  command: ~/Projects/git/distrobox/install --prefix ~/.local

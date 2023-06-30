@@ -1,3 +1,8 @@
+- name: Set Keyboard layout to US Alt. Inter
+  dconf:
+    key: /org/gnome/desktop/input-sources/sources
+    value: "[('xkb', 'us+alt-intl')]"
+
 - name: Enable Caps Lock as Ctrl
   dconf:
     key: /org/gnome/desktop/input-sources/xkb-options
