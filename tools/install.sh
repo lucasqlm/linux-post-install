@@ -5,7 +5,7 @@ VER=$(lsb_release -sr)
 
 case $OS in
 Debian | Ubuntu)
-    wget -O post-install.zip https://github.com/lucasqlm/linux-post-install/archive/feature/general-install.zip \
+    wget -O post-install.zip https://github.com/lucasqlm/linux-post-install/archive/master.zip \
       && unzip -qo post-install.zip -d linux-post-install\
       && rm post-install.zip
 
@@ -16,7 +16,7 @@ Debian | Ubuntu)
     PATH=$HOME/.local/bin:$PATH ./start.sh
     ;;
 Fedora)
-    curl --location --output post-install.zip https://github.com/lucasqlm/linux-post-install/archive/feature/general-install.zip \
+    curl --location --output post-install.zip https://github.com/lucasqlm/linux-post-install/archive/master.zip \
       && unzip -qo post-install.zip -d linux-post-install\
       && rm post-install.zip
 
