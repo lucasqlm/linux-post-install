@@ -11,7 +11,7 @@ Debian | Ubuntu)
 
     sudo apt update && sudo apt install -y ansible
 
-    cd linux-post-install/linux-post-install-feature-master
+    cd linux-post-install/linux-post-install-master 
     PATH=$HOME/.local/bin:$PATH ./start.sh
     ;;
 Fedora)
@@ -21,7 +21,7 @@ Fedora)
 
     pip install ansible
 
-    cd linux-post-install/linux-post-install-feature-master
+    cd linux-post-install/linux-post-install-master
     ./start.sh
     ;;
 *)
