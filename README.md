@@ -1,9 +1,9 @@
 # Automated Post Install Script
 
 ## Run
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/lucasqlm/linux-post-install/feature/general-install/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/lucasqlm/linux-post-install/master/tools/install.sh)"
 
-sh -c "$(wget https://raw.githubusercontent.com/lucasqlm/linux-post-install/feature/general-install/tools/install.sh -O -)"
+sh -c "$(wget https://raw.githubusercontent.com/lucasqlm/linux-post-install/master/tools/install.sh -O -)"
 
 ## Run
 Clone this repository and run the playbook as your user
